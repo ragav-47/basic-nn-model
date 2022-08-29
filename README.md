@@ -13,7 +13,8 @@ In this basic NN Model, we have used "relu" activation function in input and hid
 
 ## Neural Network Model
 
-![image](https://user-images.githubusercontent.com/75235488/187116865-7268dba9-7a58-4c5b-ba19-1bbbfc65dee1.png)
+![image](https://user-images.githubusercontent.com/75235488/187118111-672bca5f-1969-49b2-a382-6f5928f9e7d1.png)
+
 
 ## DESIGN STEPS
 

@@ -10,7 +10,7 @@ Explain the problem statement
 
 ## Neural Network Model
 
-Include the neural network model diagram.
+![image](https://user-images.githubusercontent.com/75235488/187116865-7268dba9-7a58-4c5b-ba19-1bbbfc65dee1.png)
 
 ## DESIGN STEPS
 
@@ -44,24 +44,60 @@ Evaluate the model with the testing data.
 
 ## PROGRAM
 
-Include your code here
+```python
+import tensorflow as tf
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from tensorflow.keras.models import Sequential 
+from tensorflow.keras.layers import Dense
+
+df=pd.read_csv("data.csv")
+
+df.head()
+
+x=df[["input"]].values
+y=df[["output"]].values
+
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=22)
+
+model=Sequential([Dense(16,activation='relu'),
+                  Dense(8,activation='relu'),
+                  Dense(1)])
+
+model.compile(loss="mae",optimizer="adam",metrics=["mse"])
+
+history=model.fit(x_train,y_train,epochs=1000)
+
+pred=model.predict(x_test)
+tf.round(pred)
+
+tf.round(model.predict([[50]]))
+
+pd.DataFrame(history.history).plot()
+plt.title("Loss vs Iteration")
+plt.xlabel("Iteration")
+plt.ylabel("Loss")
+
+r=tf.keras.metrics.RootMeanSquaredError()
+r(y_test,pred)
+```
 
 ## Dataset Information
 
-Include screenshot of the dataset
+![image](https://user-images.githubusercontent.com/75235488/187116152-203180a5-b0a6-4e25-a4ac-9e5a8af2550c.png)
 
 ## OUTPUT
 
-### Training Loss Vs Iteration Plot
-
-Include your plot here
+![image](https://user-images.githubusercontent.com/75235488/187116196-39713095-29c3-41e8-9006-c1f18f4e8264.png)
 
 ### Test Data Root Mean Squared Error
 
-Find the test data root mean squared error
+![image](https://user-images.githubusercontent.com/75235488/187116341-efc4b30d-823a-40ce-ad11-2afadaf9676b.png)
+
 
 ### New Sample Data Prediction
 
-Include your sample input and output here
+![image](https://user-images.githubusercontent.com/75235488/187116301-cd0ad317-a258-4379-a84d-89dfa6d761a7.png)
 
 ## RESULT
+A Basic neural network regression model for the given dataset is developed successfully.
